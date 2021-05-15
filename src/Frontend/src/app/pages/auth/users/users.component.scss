@@ -1,0 +1,15 @@
+:host ::ng-deep .ngx-pagination-wrapper {
+    margin-top: 30px;
+}
+
+.card {
+    background-color: transparent;
+
+    @media only screen and (max-width: 600px) {
+        font-size: 80%;
+    }
+
+    @media only screen and (max-width: 400px) {
+        font-size: 50%;
+    }
+}

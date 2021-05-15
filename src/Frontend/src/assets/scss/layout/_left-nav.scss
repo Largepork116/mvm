@@ -1,0 +1,116 @@
+@import '../variables.scss';
+
+@mixin create-left-nav($name, $theme) { 
+    .app-#{$name} {
+        .app-left-nav {
+            grid-column: 1;
+            grid-row: 1/4;
+            background: map-get($map: $theme, $key: 'primary');
+            &-brand {
+                display: none;
+            }
+            &-usr {
+                width: 100%;
+                margin: 1.5rem auto 0.5rem auto;
+                padding-bottom: 0.5rem;
+                text-align: center;
+                border-bottom: map-get($map: $theme, $key: 'border_primary');
+                &__avatar {
+                    height: 120px;
+                    width: 120px;
+                    margin: 0.5rem auto;
+                    border-radius: 100%;
+                    box-shadow: map-get($map: $theme, $key: 'shadow');
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    background-position: center;
+                    border-bottom: map-get($map: $theme, $key: 'border_secondary');
+                }
+                &__name {
+                    color: map-get($map: $theme, $key: 'light');
+                    font-size: 16px;
+                    font-weight: bold;
+                    margin-bottom: 0.15rem;
+                }
+                &__position {
+                    color: map-get($map: $theme, $key: 'light');
+                    font-weight: 400;
+                    font-size: 14px;
+                }
+            }
+            &-menu {
+                width: 100%;
+                border-bottom: map-get($map: $theme, $key: 'border_primary');
+                padding: 0.5rem 0;
+                &__title {
+                    color: map-get($map: $theme, $key: 'secondary');
+                    text-align: left;
+                    margin-left: 0.5rem;
+                    font-weight: 700;
+                }
+                &__links {
+                    padding: 0;
+                    &-link {
+                        width: 100%;
+                        color: map-get($map: $theme, $key: 'light');
+                        list-style: none;
+                        font-size: 1rem;
+                        padding: 0.4rem 0.1rem 0.4rem 0.5rem;
+                        transition: 0.5s all ease-in-out;
+                        opacity: 0.7;
+                        > span {
+                            margin-left: 0.5rem;
+                        }
+                        &:hover {
+                            background: rgba(255,255,255,0.15);
+                            cursor: pointer;
+                            opacity: 1;
+                        }
+
+                        &.active {
+                            color: map-get($map: $theme, $key: 'active');;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+    @media(max-width: 768px) {
+        .app-#{$name} {
+            .app-left-nav {
+                position: fixed;
+                width: 250px;
+                min-height: 500px;
+                height: 100vh;
+                &-brand {
+                    display: flex;
+                    align-items: center;
+                    padding: 0.5rem 1rem;
+                    border-bottom: map-get($map: $theme, $key: 'border_primary');
+                    &__menu {
+                        color: map-get($map: $theme, $key: 'light');
+                        font-size: 25px;
+                        margin-right: 0.5rem;
+                        cursor: pointer;
+                    }
+                    &__logo {
+                        display: flex;
+                        align-items: center;
+                        > img {
+                            height: 30px;
+                        }
+                        span {
+                            color: map-get($map: $theme, $key: 'light');
+                            letter-spacing: 3px;
+                            font-weight: 700;
+                            font-size: 1.5rem;
+                            text-transform: uppercase;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

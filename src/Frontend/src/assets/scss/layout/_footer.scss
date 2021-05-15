@@ -1,0 +1,30 @@
+@import '../variables.scss';
+
+@mixin create-footer($name, $theme) {
+    .app-#{$name}{
+        .app-footer {
+            grid-column: 2;
+            grid-row: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            //padding: 0.25rem;
+            //margin: 0 1rem 0.5rem 1rem;
+            //border-radius: 3px;
+            height: 100%;
+            background: map-get($map: $theme, $key: 'background');
+            color: map-get($map: $theme, $key: 'light');
+            &-text {
+                font-weight: 400;
+                margin-right: 0.5rem;
+                font-size: 0.9rem;
+            }
+            &__socials {
+                &-social {
+                    font-size: 1.25rem;
+                    margin: 0 0.35rem
+                }
+            }
+        }
+    }
+}

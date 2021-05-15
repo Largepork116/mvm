@@ -1,0 +1,8 @@
+<section class="app-{{themeService.theme}} {{ showLeftNav? 'app-main-container': 'app-main-container-full' }}">
+  <app-header class="app-header" (showMenu)="showMenu()"></app-header>
+  <app-navigation class="app-left-nav" *ngIf="showLeftNav" (showMenu)="showMenu()"></app-navigation>
+  <main class="app-{{themeService.theme}}-main-content">
+    <router-outlet></router-outlet>
+  </main>
+  <app-footer></app-footer>
+</section>

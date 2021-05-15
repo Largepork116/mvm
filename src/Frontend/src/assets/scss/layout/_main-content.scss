@@ -1,0 +1,25 @@
+@import '../variables.scss';
+
+@mixin create-main-content($name, $theme) {
+    .app-#{$name} {
+        &-main-content {
+            grid-column: 2;
+            grid-row: 2;
+            //margin: 1rem;
+            background: map-get($map: $theme, $key: 'background');
+            //border-radius: 5px;
+            box-shadow: 1px 1px 12px 1px rgba(0,0,0,0.1);
+            color: map-get($map: $theme, $key: 'light');
+            padding: 1rem;
+
+            .btn {
+                color: map-get($map: $theme, $key: 'light');
+            }
+        }
+
+        .modal-content {
+            background: map-get($map: $theme, $key: 'background');
+            color: map-get($map: $theme, $key: 'light');
+        }
+    }
+}

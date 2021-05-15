@@ -1,0 +1,34 @@
+.main-header {
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1037;
+
+    &.navbar {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: .5rem .5rem;
+    }
+
+    @media (min-width: 768px) {
+        transition: margin-left .3s ease-in-out;
+        margin-left: 250px;
+    }
+}
+
+
+
+
+
+.dropdown-item-title.break-spaces {
+    text-align: center;
+    white-space: break-spaces;
+}

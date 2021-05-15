@@ -1,0 +1,81 @@
+<form [formGroup]="userForm" novalidate
+      (ngSubmit)="onSubmit()">
+
+  <div class="modal-header">
+      <h4 class="modal-title">Configurar Nuevo Usuario</h4>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+        (click)="activeModal.close('Close click')">
+      </button>
+  </div>
+
+  <div class="modal-body">
+
+    <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <input class="form-control" formControlName="name" placeholder="Nombre">
+        <ng-container *ngFor="let error of errorMessages.name">
+          <p class="error-message" *ngIf="name.hasError(error.type) && (name.dirty || isSubmitted)">
+            {{ error.message }}
+          </p>
+        </ng-container>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Apellidos</label>
+      <input class="form-control" formControlName="lastName" placeholder="Apellidos">
+      <ng-container *ngFor="let error of errorMessages.lastName">
+        <p class="error-message" *ngIf="lastName.hasError(error.type) && (lastName.dirty || isSubmitted)">
+          {{ error.message }}
+        </p>
+      </ng-container>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Teléfono</label>
+      <input class="form-control" formControlName="phone" placeholder="Teléfono">
+      <ng-container *ngFor="let error of errorMessages.phone">
+        <p class="error-message" *ngIf="phone.hasError(error.type) && (phone.dirty || isSubmitted)">
+          {{ error.message }}
+        </p>
+      </ng-container>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input class="form-control" formControlName="email" placeholder="name@email.com">
+      <ng-container *ngFor="let error of errorMessages.email">
+        <p class="error-message" *ngIf="email.hasError(error.type) && (email.dirty || isSubmitted)">
+          {{ error.message }}
+        </p>
+      </ng-container>
+    </div> 
+
+    <div class="mb-3">
+      <label class="form-label">Rol</label>
+
+      <select class="form-control" formControlName="role">
+        <option [value]="item.name" *ngFor="let item of roles">{{item.name}}</option>
+      </select>
+     
+      <ng-container *ngFor="let error of errorMessages.role">
+        <p class="error-message" *ngIf="role.hasError(error.type) && (role.dirty || isSubmitted)">
+          {{ error.message }}
+        </p>
+      </ng-container>
+    </div>
+
+    <div class="mb-3">
+      <p class="text-muted">
+        El usuario será creado con el siguiente password: P4$$w0rd
+      </p>
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+      <button type="submit" class="btn btn-sm btn-outline-primary btn-lg">Enviar</button>
+      <button type="button" class="btn btn-sm btn-outline-secondary btn-lg" (click)="activeModal.close('Close click')" ngbAutofocus >Cerrar</button>
+  </div>
+
+</form>
+

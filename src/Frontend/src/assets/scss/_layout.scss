@@ -1,0 +1,36 @@
+@import './themes';
+
+.app {
+    &-main-container, &-main-container-full {
+        display: grid;
+        grid-template-columns: 200px auto;
+        grid-template-rows: 60px auto 50px;
+        height: 100vh;
+        min-height: 500px;
+    }
+    
+    &-main-container-full {
+        grid-template-columns: 0 auto;
+    }
+
+    &-header, &-left-nav {
+        box-shadow: 1px 1px 6px 0px rgba(0,0,0,0.5);
+        z-index: 1;
+    }
+    
+}
+
+@each $name, $theme in $themes {
+    @include create-header($name, $theme);
+    @include create-left-nav($name, $theme);
+    @include create-footer($name, $theme);
+    @include create-main-content($name, $theme);
+}
+
+@media(max-width: 768px) {
+    .app {
+        &-main-container {
+            grid-template-columns: 0px auto;
+        }
+    }
+}

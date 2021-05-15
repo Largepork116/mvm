@@ -1,0 +1,55 @@
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Listado de Documentos</h3>
+  </div>
+  <div class="card-body">
+
+    <div class="col-12"> 
+      <ngx-table [configuration]="configuration" 
+                [data]="collection"
+                #table
+                [columns]="columns"
+                [noResultsTemplate]="noResultsTemplate">
+    
+        <ng-template let-row let-index="index" class="table table-sm">
+          <td></td>
+          <td>
+            {{ row | consecutive}}
+          </td>
+          <td>
+            {{ row.sender.name }} {{ row.sender.lastName }}
+          </td>
+          <td>
+            {{ row.addressee.name }} {{ row.addressee.lastName }}
+          </td>
+    
+          <td>
+            <button
+              (click)="view(row)"
+              class="btn btn-default btn-sm">
+              <i class="fas fa-eye"></i>
+            </button>
+          </td>
+    
+        </ng-template>
+    
+      </ngx-table>
+
+    
+      <ng-template #noResultsTemplate>
+        <td [attr.colspan]="columns.length" class="no-results">
+          No se encontraron resultados
+        </td>
+      </ng-template>
+
+      <div class="float-right mt-4">
+        <button (click)="create()"
+                class="btn btn-outline-primary">
+          Crear nuevo documento
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</div>

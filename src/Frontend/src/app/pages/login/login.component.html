@@ -1,0 +1,36 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="assets/logo.png" id="icon" alt="User Icon" />
+    </div>
+    
+    <!-- Login Form -->
+    <form [formGroup]="loginForm" novalidate 
+      (ngSubmit)="login()">
+      <input type="text" id="login" 
+        class="fadeIn second" 
+        name="login" placeholder="Login"
+        formControlName="username">
+      <ng-container *ngFor="let error of errorMessages.username">
+        <p class="error-message" *ngIf="username.hasError(error.type) && (username.dirty || isSubmitted)">
+          {{ error.message }}
+        </p>
+      </ng-container>
+
+      <input type="password" id="password" 
+        class="fadeIn third" 
+        name="login" placeholder="Password"
+        formControlName="password">
+      <ng-container *ngFor="let error of errorMessages.password">
+        <p class="error-message" *ngIf="password.hasError(error.type) && (password.dirty || isSubmitted)">
+          {{ error.message }}
+        </p>
+      </ng-container>
+
+      <input type="submit" class="fadeIn fourth" value="Log In">
+    </form>
+
+  </div>
+</div>

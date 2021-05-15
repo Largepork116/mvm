@@ -1,0 +1,44 @@
+<div class="app-left-nav-brand">
+  <i class="fas fa-bars app-left-nav-brand__menu" (click)="showMenu.emit()"></i>
+  <div class="app-left-nav-brand__logo">
+      <img src="assets/logo.png" alt="logo"/>
+      <span>stronaut</span>
+  </div>
+</div>
+<div class="app-left-nav-usr">
+  <div class="app-left-nav-usr__avatar" style="background-image: url(assets/avatar_nav_bar.jpg)"></div>
+  <h4 class="app-left-nav-usr__name">{{profile?.email}}</h4>
+  <h6 class="app-left-nav-usr__position">{{profile?.role}}</h6>
+  <button type="button" (click)="logout()"
+    class="btn btn-sm btn-outline-danger">
+    Cerrar sesión
+  </button>
+</div>
+
+<ng-container *ngFor="let item of menu">
+
+  <ng-template [ngxPermissionsOnly]="item.permissions">
+
+    <div class="app-left-nav-menu">
+      <h5 class="app-left-nav-menu__title">{{ item.title }}</h5>
+
+      <ul class="app-left-nav-menu__links">
+  
+        <ng-container *ngFor="let link of item.links" >
+
+          <ng-template [ngxPermissionsOnly]="link.permissions">
+            <li class="app-left-nav-menu__links-link" [routerLink]="link.link" [routerLinkActive]="['active']">
+                <i class="fas {{link.icon}}"></i>
+                <span> {{ link.title }}</span>
+            </li>
+          </ng-template>
+
+        </ng-container>
+  
+      </ul>
+    </div>
+
+  </ng-template>
+
+</ng-container>
+

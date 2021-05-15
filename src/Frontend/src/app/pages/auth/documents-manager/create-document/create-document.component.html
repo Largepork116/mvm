@@ -1,0 +1,78 @@
+<form [formGroup]="documentForm" novalidate
+      (ngSubmit)="onSubmit()">
+
+  <div class="modal-header">
+      <h4 class="modal-title">Registrar Documento</h4>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+        (click)="activeModal.close('Close click')">
+      </button>
+  </div>
+
+  <div class="modal-body">
+
+    <div class="mb-3">
+        <label class="form-label">Remitente</label>
+
+        <select class="form-control" formControlName="senderId">
+          <option [value]="item.personId" *ngFor="let item of people | removeAdminPerson">{{item.name}} {{item.lastName}}</option>
+        </select>
+
+        <ng-container *ngFor="let error of errorMessages.senderId">
+          <p class="error-message" *ngIf="senderId.hasError(error.type) && (senderId.dirty || isSubmitted)">
+            {{ error.message }}
+          </p>
+        </ng-container>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Destinatario</label>
+
+      <select class="form-control" formControlName="addresseeId">
+        <option [value]="item.personId" *ngFor="let item of people | removeAdminPerson | onlyInternalPeople">{{item.name}} {{item.lastName}}</option>
+      </select>
+
+      <ng-container *ngFor="let error of errorMessages.addresseeId">
+        <p class="error-message" *ngIf="addresseeId.hasError(error.type) && (addresseeId.dirty || isSubmitted)">
+          {{ error.message }}
+        </p> 
+      </ng-container>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Tipo Correspondencia</label>
+
+      <select class="form-control" formControlName="type">
+        <option [value]="item.type" *ngFor="let item of documentsTypes">{{item.name}}</option>
+      </select>
+
+      <ng-container *ngFor="let error of errorMessages.type">
+        <p class="error-message" *ngIf="type.hasError(error.type) && (type.dirty || isSubmitted)">
+          {{ error.message }}
+        </p> 
+      </ng-container>
+    </div>
+
+    <div class="mb-3">
+      <p class="text-muted">
+        Seleccione el archivo
+      </p>
+  
+      <input type="file" name="file"   
+              [ngClass]="{'error-message': isSubmitted && !file}"
+              class="mb-3"
+              accept=".pdf"
+              (change)="onFileChange($event.target.files)" /> 
+
+    </div>
+
+
+
+  </div>
+
+  <div class="modal-footer">
+      <button type="submit" class="btn btn-sm btn-outline-primary btn-lg">Enviar</button>
+      <button type="button" class="btn btn-sm btn-outline-secondary btn-lg" (click)="activeModal.close('Close click')" ngbAutofocus >Cerrar</button>
+  </div>
+
+</form>
+

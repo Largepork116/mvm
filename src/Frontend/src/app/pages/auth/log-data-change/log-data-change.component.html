@@ -1,0 +1,52 @@
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Logs</h3>
+  </div>
+  <div class="card-body">
+
+    <div class="col-12"> 
+      <ngx-table [configuration]="configuration" 
+                [data]="collection"
+                #table
+                [columns]="columns"
+                [noResultsTemplate]="noResultsTemplate">
+    
+        <ng-template let-row let-index="index" class="table table-sm">
+          <td></td>
+          <td>
+            {{ row.table }}
+          </td>
+          <td>
+            {{ row.pk }}
+          </td>
+          <td>
+            <p *ngFor="let item of row.changes | logDataChanges">
+              {{ item }}
+            </p>
+          </td>
+          <td>
+            {{ row.updatedBy }}
+          </td>
+          <td>
+            {{ row.updatedAt | date:"YYYY-MM-dd, hh:mm a"}}
+          </td>
+    
+          <td>
+
+          </td>
+    
+        </ng-template>
+    
+      </ngx-table>
+
+    
+      <ng-template #noResultsTemplate>
+        <td [attr.colspan]="columns.length" class="no-results">
+          No se encontraron resultados
+        </td>
+      </ng-template>
+
+    </div>
+
+  </div>
+</div>

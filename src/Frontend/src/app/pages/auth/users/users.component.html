@@ -1,0 +1,54 @@
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Listado de Usuarios</h3>
+  </div>
+  <div class="card-body">
+
+    <div class="col-12"> 
+      <ngx-table [configuration]="configuration" 
+                [data]="collection"
+                #table
+                [columns]="columns"
+                [noResultsTemplate]="noResultsTemplate">
+    
+        <ng-template let-row let-index="index" class="table table-sm">
+          <td></td>
+          <td>
+            {{ row.name }}
+          </td>
+          <td>
+            {{ row.email }}
+          </td>
+          <td>
+            {{ row.role }}
+          </td>
+    
+          <td>
+            <button
+              (click)="edit(row)"
+              class="btn btn-default btn-sm">
+              <i class="fas fa-edit"></i>
+            </button>
+          </td>
+    
+        </ng-template>
+    
+      </ngx-table>
+
+    
+      <ng-template #noResultsTemplate>
+        <td [attr.colspan]="columns.length" class="no-results">
+          No se encontraron resultados
+        </td>
+      </ng-template>
+
+      <div class="float-right mt-4">
+        <button (click)="create()"
+                class="btn btn-outline-primary">
+          Crear nuevo usuario
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
